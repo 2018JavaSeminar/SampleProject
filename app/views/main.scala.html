@@ -1,0 +1,28 @@
+@(title: String)(bodyContent: Html)
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+		<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("vendor/bootstrap-3.3.1/css/bootstrap.min.css")" />
+		<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")" />
+		<title>@title</title>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="@routes.ProductListController.index()">サンプルアプリケーション</a>
+			</div>
+			<div class="collapse navbar-collapse"></div>
+		</nav>
+
+		@bodyContent
+
+		<script type="text/javascript" src="@routes.Assets.versioned("vendor/jquery/jquery-3.2.1.min.js")"></script>
+		<script type="text/javascript" src="@routes.Assets.versioned("vendor/bootstrap-3.3.1/js/bootstrap.min.js")"></script>
+		<script type="text/javascript" src="@routes.Assets.versioned("javascripts/main.js")"></script>
+	</body>
+</html>

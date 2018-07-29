@@ -1,0 +1,47 @@
+@(productForm: Form[views.form.ProductInfoManageForm], isEdit: Boolean, message: String)
+
+@prodNo = @{productForm("prodNo").value}
+
+@action = @{
+	if (isEdit) {
+		routes.ProductInfoManageController.update(prodNo)
+	} else {
+		routes.ProductInfoManageController.create()
+	}
+}
+
+@views.html.main("一覧") {
+<div class="container info">
+	<div class="row">
+		@if(message != null) {
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+				@message
+			</div>
+		}
+		<div class="col-lg-12">
+		@helper.form(action = action) {
+			@helper.inputText(productForm("prodNo"),
+				'_label -> "商品番号")
+			@helper.inputText(productForm("prodName"),
+				'_label -> "商品名")
+			@helper.inputText(productForm("price"),
+				'_label -> "価格")
+			@helper.inputText(productForm("caption"),
+				'_label -> "説明文")
+			<input type="submit" class="btn btn-primary" value="登録" />
+		}
+		</div>
+	</div>
+	@if(isEdit) {
+		<hr>
+		<div class="row">
+			<div class="col-lg-12">
+				@helper.form(action = routes.ProductInfoManageController.delete(prodNo)) {
+					<input type="submit" class="btn btn-danger" value="削除" />
+				}
+			</div>
+		</div>
+	}
+</div>
+}
