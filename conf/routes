@@ -13,3 +13,12 @@ GET     /product/:prodNo            controllers.ProductInfoManageController.edit
 POST    /product                    controllers.ProductInfoManageController.create()
 POST    /product/:prodNo            controllers.ProductInfoManageController.update(prodNo:String)
 POST    /product/delete/:prodNo     controllers.ProductInfoManageController.delete(prodNo:String)
+
+# SQLVersion
+GET     /sql/index                  controllers.ProductListSqlController.index()
+
+GET     /sql/product/info               controllers.ProductInfoManageSqlController.init()
+GET     /sql/product/:prodNo            controllers.ProductInfoManageSqlController.edit(prodNo:String)
+POST    /sql/product                controllers.ProductInfoManageSqlController.create()
+POST    /sql/product/:prodNo            controllers.ProductInfoManageSqlController.update(prodNo:String)
+POST    /sql/product/delete/:prodNo     controllers.ProductInfoManageSqlController.delete(prodNo:String)
