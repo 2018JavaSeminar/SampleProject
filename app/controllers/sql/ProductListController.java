@@ -1,4 +1,4 @@
-package controllers;
+package controllers.sql;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import logic.ProductListSqlLogic;
+import logic.sql.ProductListLogic;
 import models.entity.ProductEntityDTO;
 import play.data.Form;
 import play.data.FormFactory;
@@ -17,16 +17,16 @@ import views.form.ProductListDisplayInfo;
 import views.form.ProductListForm;
 
 @Singleton
-public class ProductListSqlController extends Controller {
+public class ProductListController extends Controller {
 
 	private Form<ProductListForm> forms;
 	private Form<ProductListDisplayInfo> displayInfo;
 
 	@Inject
-	ProductListSqlLogic logic;
+	ProductListLogic logic;
 
 	@Inject
-	public ProductListSqlController(FormFactory factory) {
+	public ProductListController(FormFactory factory) {
 		this.forms = factory.form(ProductListForm.class);
 		this.displayInfo = factory.form(ProductListDisplayInfo.class);
 	}
@@ -35,12 +35,12 @@ public class ProductListSqlController extends Controller {
 		Form<ProductListForm> reqForm = forms.bindFromRequest();
 
 		if (reqForm.hasErrors()) {
-			return badRequest(views.html.productListSql.render(reqForm, new ArrayList<>()));
+			return badRequest(views.html.sql.productList.render(reqForm, new ArrayList<>()));
 		}
 
 		ProductListForm form = reqForm.get();
 		List<ProductEntityDTO> infoList = logic.search(form.getSearchWord());
-		return ok(views.html.productListSql.render(forms.fill(form), fill(setDisplayInfo(infoList))));
+		return ok(views.html.sql.productList.render(forms.fill(form), fill(setDisplayInfo(infoList))));
 	}
 
 	private List<Form<ProductListDisplayInfo>> fill(List<ProductListDisplayInfo> items) {

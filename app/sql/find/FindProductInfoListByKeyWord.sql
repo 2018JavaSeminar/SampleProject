@@ -4,10 +4,10 @@ SELECT
 	price,
 	caption,
 	created_at,
-	updated_at
+	updated_at 
 FROM
-	product
+	product 
 WHERE
-	prod_name LIKE '%':prodName'%'
+	prod_name LIKE :keyWord 
 OR
-	caption LIKE '%':caption'%'
+	caption LIKE :keyWord

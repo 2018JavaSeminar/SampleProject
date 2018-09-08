@@ -1,11 +1,11 @@
-package controllers;
+package controllers.basic;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.apache.commons.lang3.StringUtils;
 
-import logic.ProductInfoManageLogic;
+import logic.basic.ProductInfoManageLogic;
 import play.data.Form;
 import play.data.FormFactory;
 import play.db.ebean.Transactional;
@@ -30,18 +30,18 @@ public class ProductInfoManageController extends Controller {
 	 */
 	public Result init() {
 		ProductInfoManageForm form = new ProductInfoManageForm();
-		return ok(views.html.productInfoManage.render(forms.fill(form), false, null));
+		return ok(views.html.basic.productInfoManage.render(forms.fill(form), false, null));
 	}
 
 	public Result edit(String prodNo) {
 
 		// 商品番号が未設定の場合は、新規登録画面にリダイレクト
 		if (StringUtils.isBlank(prodNo)) {
-			return redirect(routes.ProductInfoManageController.init());
+			return redirect(controllers.basic.routes.ProductInfoManageController.init());
 		}
 
 		ProductInfoManageLogic logic = new ProductInfoManageLogic();
-		return ok(views.html.productInfoManage.render(forms.fill(logic.searchByKey(prodNo)), true, null));
+		return ok(views.html.basic.productInfoManage.render(forms.fill(logic.searchByKey(prodNo)), true, null));
 	}
 
 	@Transactional
@@ -61,18 +61,18 @@ public class ProductInfoManageController extends Controller {
 		if (!result.equals("0")) {
 			return badRequest("delete error");
 		}
-		return redirect(routes.ProductListController.index());
+		return redirect(controllers.basic.routes.ProductListController.index());
 	}
 
 	private Result execute(boolean isEdit, int procDiv) {
 		Form<ProductInfoManageForm> reqForm = forms.bindFromRequest();
 
 		if (reqForm.hasErrors()) {
-			return badRequest(views.html.productInfoManage.render(reqForm, isEdit, null));
+			return badRequest(views.html.basic.productInfoManage.render(reqForm, isEdit, null));
 		}
 		ProductInfoManageLogic logic = new ProductInfoManageLogic();
 		logic.insertOrUpdate(reqForm.get(), procDiv);
-		return ok(views.html.productInfoManage.render(forms.fill(reqForm.get()), true, "保存しました"));
+		return ok(views.html.basic.productInfoManage.render(forms.fill(reqForm.get()), true, "保存しました"));
 
 	}
 

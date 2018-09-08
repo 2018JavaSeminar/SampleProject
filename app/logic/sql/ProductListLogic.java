@@ -1,4 +1,4 @@
-package logic;
+package logic.sql;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import dao.find.FindProductEntityDAO;
 import models.entity.ProductEntityDTO;
 import play.libs.Json;
 
-public class ProductListSqlLogic {
+public class ProductListLogic {
 
 	@Inject
 	FindProductEntityDAO dao;
@@ -34,7 +34,7 @@ public class ProductListSqlLogic {
 		if (StringUtils.isEmpty(word)) {
 			json = Json.toJson(dao.findProductInfoListAll());
 		} else {
-			json = Json.toJson(dao.findProductInfoListKeyWord(word));
+			json = Json.toJson(dao.findProductInfoListByKeyWord(word));
 		}
 		List<ProductEntityDTO> list = new ArrayList<ProductEntityDTO>();
 

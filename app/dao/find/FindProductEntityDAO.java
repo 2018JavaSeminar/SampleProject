@@ -20,12 +20,12 @@ public class FindProductEntityDAO {
 
 	/**
 	 * あいまい検索
-	 * @param word キーワード
+	 * @param keyWord キーワード
 	 * @return 検索結果
 	 */
-	public List<SqlRow> findProductInfoListKeyWord(String word) {
+	public List<SqlRow> findProductInfoListByKeyWord(String keyWord) {
 		return Ebean.createSqlQuery(DaoUtil.getSql(DaoUtil.getBasePath() + "/find/" + DaoUtil.getMethodName() + ".sql"))
-				.setParameter("prodName", word).setParameter("caption", word).findList();
+				.setParameter("keyWord", "%" + keyWord + "%").findList();
 	}
 
 	/**

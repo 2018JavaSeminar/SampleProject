@@ -1,4 +1,4 @@
-package controllers;
+package controllers.basic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import logic.ProductListLogic;
+import logic.basic.ProductListLogic;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -31,13 +31,13 @@ public class ProductListController extends Controller {
 		Form<ProductListForm> reqForm = forms.bindFromRequest();
 
 		if (reqForm.hasErrors()) {
-			return badRequest(views.html.productList.render(reqForm, new ArrayList<>()));
+			return badRequest(views.html.basic.productList.render(reqForm, new ArrayList<>()));
 		}
 
 		ProductListForm form = reqForm.get();
 		ProductListLogic logic = new ProductListLogic();
 		List<ProductListDisplayInfo> infoList = logic.search(form.getSearchWord());
-		return ok(views.html.productList.render(forms.fill(form), fill(infoList)));
+		return ok(views.html.basic.productList.render(forms.fill(form), fill(infoList)));
 	}
 
 	private List<Form<ProductListDisplayInfo>> fill(List<ProductListDisplayInfo> items) {

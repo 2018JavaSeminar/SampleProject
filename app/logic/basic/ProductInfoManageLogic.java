@@ -1,4 +1,4 @@
-package logic;
+package logic.basic;
 
 import org.apache.commons.lang3.StringUtils;
 

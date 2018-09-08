@@ -3,22 +3,31 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET     /                           controllers.ProductListController.index()
+#GET     /                           controllers.basic.ProductListController.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /product/info               controllers.ProductInfoManageController.init()
-GET     /product/:prodNo            controllers.ProductInfoManageController.edit(prodNo:String)
-POST    /product                    controllers.ProductInfoManageController.create()
-POST    /product/:prodNo            controllers.ProductInfoManageController.update(prodNo:String)
-POST    /product/delete/:prodNo     controllers.ProductInfoManageController.delete(prodNo:String)
+# BasicVersion
+GET     /index                      controllers.basic.ProductListController.index()
+GET     /product/info               controllers.basic.ProductInfoManageController.init()
+GET     /product/:prodNo            controllers.basic.ProductInfoManageController.edit(prodNo:String)
+POST    /product                    controllers.basic.ProductInfoManageController.create()
+POST    /product/:prodNo            controllers.basic.ProductInfoManageController.update(prodNo:String)
+POST    /product/delete/:prodNo     controllers.basic.ProductInfoManageController.delete(prodNo:String)
 
 # SQLVersion
-GET     /sql/index                  controllers.ProductListSqlController.index()
+GET     /sql/index                  controllers.sql.ProductListController.index()
+GET     /sql/product/info           controllers.sql.ProductInfoManageController.init()
+GET     /sql/product/:prodNo        controllers.sql.ProductInfoManageController.edit(prodNo:String)
+POST    /sql/product                controllers.sql.ProductInfoManageController.create()
+POST    /sql/product/:prodNo        controllers.sql.ProductInfoManageController.update(prodNo:String)
+POST    /sql/product/delete/:prodNo controllers.sql.ProductInfoManageController.delete(prodNo:String)
 
-GET     /sql/product/info               controllers.ProductInfoManageSqlController.init()
-GET     /sql/product/:prodNo            controllers.ProductInfoManageSqlController.edit(prodNo:String)
-POST    /sql/product                controllers.ProductInfoManageSqlController.create()
-POST    /sql/product/:prodNo            controllers.ProductInfoManageSqlController.update(prodNo:String)
-POST    /sql/product/delete/:prodNo     controllers.ProductInfoManageSqlController.delete(prodNo:String)
+# ThymeleafVersion
+GET     /thymeleaf/index            controllers.thymeleaf.ProductListController.index()
+GET     /thymeleaf/product/info     controllers.thymeleaf.ProductInfoManageController.init()
+GET     /thymeleaf/product        controllers.thymeleaf.ProductInfoManageController.edit(prodNo:String)
+POST    /thymeleaf/product/regist                controllers.thymeleaf.ProductInfoManageController.create()
+POST    /thymeleaf/product/update        controllers.thymeleaf.ProductInfoManageController.update()
+POST    /thymeleaf/product/delete controllers.thymeleaf.ProductInfoManageController.delete()

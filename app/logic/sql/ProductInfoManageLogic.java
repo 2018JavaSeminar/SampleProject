@@ -1,4 +1,4 @@
-package logic;
+package logic.sql;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ import models.entity.ProductEntityDTO;
 import play.libs.Json;
 import views.form.ProductInfoManageForm;
 
-public class ProductInfoManageSqlLogic {
+public class ProductInfoManageLogic {
 
 	@Inject
 	FindProductEntityDAO find;
