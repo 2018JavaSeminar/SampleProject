@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+		<link rel="stylesheet" media="screen" type="text/css" smp:cssPath="vendor/bootstrap-3.3.1/css/bootstrap.min.css"/>
+		<link rel="stylesheet" media="screen" type="text/css" smp:cssPath="stylesheets/main.css"/>
+		<title>詳細</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{http://localhost:8080/thymeleaf/index}">サンプルアプリケーション</a>
+			</div>
+			<div class="collapse navbar-collapse"></div>
+		</nav>
+		<div class="container info">
+			<form method="POST" id="productInfoManageForm" name="productInfoManageForm">
+				<div class="row">
+					<th:block th:if="${displayInfo.message != null}">
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="閉じる"><span aria-hidden="true">×</span></button>
+							<th:block th:text="${displayInfo.message}">
+						</div>
+					</th:block>
+					<div class="col-lg-12">
+						<dl>
+							<dt><label>商品番号</label></dt>
+							<dd>
+								<th:block th:if="${displayInfo.mode}">
+									<input type="text" id="prodNo" name="prodNo" th:value="${displayInfo.prodNo}" readonly>
+								</th:block>
+								<th:block th:unless="${displayInfo.mode}">
+									<input type="text" id="prodNo" name="prodNo" th:value="${displayInfo.prodNo}">
+								</th:block>
+							</dd>
+						</dl>
+						<dl>
+							<dt><label>商品名</label></dt>
+							<dd><input type="text" id="prodName" name="prodName" th:value="${displayInfo.prodName}"></dd>
+						</dl>
+						<dl>
+							<dt><label>価格</label></dt>
+							<dd><input type="text" id="price" name="price" th:value="${displayInfo.price}"></dd>
+						</dl>
+						<dl>
+							<dt><label>説明文</label></dt>
+							<dd><input type="text" id="caption" name="caption" th:value="${displayInfo.caption}"></dd>
+						</dl>
+						<th:block th:if="${displayInfo.mode}">
+							<input type="submit" class="btn btn-primary" value="更新" onclick="exec(1)"/>
+						</th:block>
+						<th:block th:if="${!displayInfo.mode}">
+							<input type="submit" class="btn btn-primary" value="登録" onclick="exec(0)"/>
+						</th:block>
+					</div>
+				</div>
+				<th:block th:if="${displayInfo.mode}">
+					<hr>
+						<div class="row">
+							<div class="col-lg-12">
+								<input type="submit" class="btn btn-danger" value="削除" onclick="exec(2)"/>
+							</div>
+						</div>
+				</th:block>
+			</form>
+		</div>
+
+		<script type="text/javascript" smp:jsPath="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" smp:jsPath="vendor/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" smp:jsPath="javascripts/ProductInfoManage.js"></script>
+	</body>
+</html>

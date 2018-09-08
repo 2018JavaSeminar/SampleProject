@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+		<link rel="stylesheet" media="screen" type="text/css" smp:cssPath="vendor/bootstrap-3.3.1/css/bootstrap.min.css"/>
+		<link rel="stylesheet" media="screen" type="text/css" smp:cssPath="stylesheets/main.css"/>
+		<title>一覧</title>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{index}">サンプルアプリケーション</a>
+			</div>
+			<div class="collapse navbar-collapse"></div>
+		</nav>
+		<div class="container">
+			<div class="row">
+				<div class="page-header">
+				<form th:action="@{index}">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control" placeholder="キーワード" name="searchWord">
+							<span class="input-group-btn">
+								<button type="submit"  class="btn input-default">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+									検索
+								</button>
+							</span>
+					</div>
+				</form>
+				<a class="btn btn-primary pull-right" th:href="@{product/info}">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					新規作成
+				</a>
+				</div>
+				<div>
+					<table class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>商品番号</th>
+								<th>商品名</th>
+								<th>価格</th>
+								<th>説明文</th>
+								<th>作成日時</th>
+								<th>更新日時</th>
+								<th></th>
+							</tr>
+						</thead>
+						<!--/* <form th:action="@controllers.thymeleaf.routes.ProductInfoManageController.edit(field("prodNo").value)"> */-->
+						<tbody>
+							<tr th:each="item:${displayInfo}">
+								<td th:text="${item.prodNo}" />
+								<td th:text="${item.prodName}" />
+								<td th:text="${item.price}" />
+								<td th:text="${item.caption}" />
+								<td th:text="${#dates.format(item.createdAt, 'yyyy/MM/dd HH:mm:SS')}" />
+								<td th:text="${#dates.format(item.updatedAt, 'yyyy/MM/dd HH:mm:SS')}" />
+								<td>
+									<a class="btn btn-success" th:href="@{product(prodNo=${item.prodNo})}">編集</a>
+								</td>
+							</tr>
+						</tbody>
+						<!--/* </form> */-->
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" smp:jsPath="vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" smp:jsPath="vendor/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+	</body>
+</html>

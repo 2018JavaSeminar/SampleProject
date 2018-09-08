@@ -1,0 +1,79 @@
+package views.form;
+
+public class ProductInfoManageDisplayInfo {
+
+	/** 商品番号 */
+	public String prodNo;
+
+	/** 商品名 */
+	public String prodName;
+
+	/** 価格 */
+	public Long price;
+
+	/** 説明文 */
+	public String caption;
+
+	/** 更新モード*/
+	public boolean mode = false;
+
+	public String message = null;
+
+	/**
+	 * 商品番号を取得します。
+	 *
+	 * @return prodNo 商品番号
+	 */
+	public String getProdNo() {
+		return prodNo;
+	}
+
+	/**
+	 * 商品番号を設定します。
+	 *
+	 * @param prodNo 商品番号
+	 */
+	public void setProdNo(String prodNo) {
+		this.prodNo = prodNo;
+	}
+
+	public String getProdName() {
+		return prodName;
+	}
+
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
+	}
+
+	public String getCaption() {
+		return caption;
+	}
+
+	public void setCaption(String caption) {
+		this.caption = caption;
+	}
+
+	public boolean isMode() {
+		return mode;
+	}
+
+	public void setMode(boolean mode) {
+		this.mode = mode;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+}

@@ -4,13 +4,13 @@
 
 @action = @{
 	if (isEdit) {
-		routes.ProductInfoManageSqlController.update(prodNo)
+		controllers.sql.routes.ProductInfoManageController.update(prodNo)
 	} else {
-		routes.ProductInfoManageSqlController.create()
+		controllers.sql.routes.ProductInfoManageController.create()
 	}
 }
 
-@views.html.main("一覧") {
+@views.html.sql.main("詳細") {
 <div class="container info">
 	<div class="row">
 		@if(message != null) {
@@ -21,15 +21,22 @@
 		}
 		<div class="col-lg-12">
 		@helper.form(action = action) {
-			@helper.inputText(productForm("prodNo"),
-				'_label -> "商品番号")
+			@if(isEdit) {
+				@helper.inputText(productForm("prodNo"), 'readonly -> "readonly", '_label -> "商品番号")
+			} else {
+				@helper.inputText(productForm("prodNo"), '_label -> "商品番号")
+			}
 			@helper.inputText(productForm("prodName"),
 				'_label -> "商品名")
 			@helper.inputText(productForm("price"),
 				'_label -> "価格")
 			@helper.inputText(productForm("caption"),
 				'_label -> "説明文")
-			<input type="submit" class="btn btn-primary" value="登録" />
+			@if(isEdit) {
+				<input type="submit" class="btn btn-primary" value="更新" />
+			} else {
+				<input type="submit" class="btn btn-primary" value="登録" />
+			}
 		}
 		</div>
 	</div>
@@ -37,7 +44,7 @@
 		<hr>
 		<div class="row">
 			<div class="col-lg-12">
-				@helper.form(action = routes.ProductInfoManageSqlController.delete(prodNo)) {
+				@helper.form(action = controllers.sql.routes.ProductInfoManageController.delete(prodNo)) {
 					<input type="submit" class="btn btn-danger" value="削除" />
 				}
 			</div>

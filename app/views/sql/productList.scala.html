@@ -1,10 +1,10 @@
 @(searchForm: Form[views.form.ProductListForm], infoList: List[Form[views.form.ProductListDisplayInfo]])
 
-@views.html.main("一覧") {
+@views.html.sql.main("一覧") {
 <div class="container">
 	<div class="row">
 		<div class="page-header">
-		@helper.form(action = routes.ProductListSqlController.index()) {
+		@helper.form(action = controllers.sql.routes.ProductListController.index) {
 			<div class="input-group col-sm-4">
 				<input type="text" class="form-control" placeholder="キーワード" name="searchWord" value="@searchForm("searchWord").value">
 					<span class="input-group-btn">
@@ -14,7 +14,7 @@
 						</button>
 					</span>
 			</div>
-			<a class="btn btn-primary pull-right" href="@routes.ProductInfoManageSqlController.init">
+			<a class="btn btn-primary pull-right" href="@controllers.sql.routes.ProductInfoManageController.init">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				新規作成
 			</a>
@@ -43,7 +43,7 @@
 						<td>@field("createdAt").value</td>
 						<td>@field("updatedAt").value</td>
 						<td>
-							<a class="btn btn-success" href="@routes.ProductInfoManageSqlController.edit(field("prodNo").value)">編集</a>
+							<a class="btn btn-success" href="@controllers.sql.routes.ProductInfoManageController.edit(field("prodNo").value)">編集</a>
 						</td>
 					</tr>
 				}
