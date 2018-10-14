@@ -90,6 +90,7 @@ public class ProductInfoManageController extends Controller implements SampleCon
 		} else {
 			displayInfo.setMessage(SUCCESS_REGISSTRY);
 		}
+		displayInfo.setMode(true);
 		Http.Context context = ctx();
 		context.args.put("displayInfo", displayInfo);
 		return ok(engine.process("thymeleaf/ProductInfoManage", context));
