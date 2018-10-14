@@ -1,6 +1,7 @@
 package models.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.avaje.ebean.ExpressionList;
@@ -29,6 +30,7 @@ public class ProductEntity extends BaseTable {
 	public static Find find = new Find();
 
 	@Required
+	@Id
 	/** 商品番号 */
 	public String prodNo;
 
